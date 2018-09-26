@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Form PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Form name="STS - Form - Group Selection" type="Workflow">
+  <Attributes>
+    <Map>
+      <entry key="pageTitle" value="STS - Form - Group Selection"/>
+    </Map>
+  </Attributes>
+  <Description/>
+  <Section label="Group Selection" name="groupSelection">
+    <Attributes>
+      <Map>
+        <entry key="subtitle" value="Group Selection"/>
+      </Map>
+    </Attributes>
+    <Field displayName="AvailableGroups" helpKey="Choose the groups" multi="true" name="groupComboBox" required="true" type="string"/>
+  </Section>
+  <Button action="next" label="Provision"/>
+</Form>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Form PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Form name="STS - Form - Server Selection" type="Workflow">
+  <Attributes>
+    <Map>
+      <entry key="pageTitle" value="STS - Form - Server Selection"/>
+    </Map>
+  </Attributes>
+  <Description/>
+ 
+  <Section label="Source Application" name="sourceServerSection">
+    <Field displayName="Source aaplication (server) name :" helpKey="Enter the application(server) from which to clone from ..." name="sourceApplication" type="Application"/>
+  </Section>
+  <Section label="Target Application(s)" name="targetApplications">
+    <Field displayName="Target Application(s)" helpKey="Enter the target applications (servers) names" multi="true" name="targetApplications" required="true" type="string"/>
+  </Section>
+  <Button action="next" label="Next"/>
+</Form>

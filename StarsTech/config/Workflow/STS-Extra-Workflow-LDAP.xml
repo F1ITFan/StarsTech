@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Workflow PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Workflow  explicitTransitions="true"  libraries="Identity"  name="STS-QuickLink-LDAP">
+  <Variable initializer="string:true" name="transient"/>
+  <Variable name="approver1"/>
+  <Variable name="LDAPGroupName"/>
+  <Variable name="approver2"/>
+  <Variable name="identityName"/>
+  <Variable name="date"/>
+  <Variable name="plan"/>
+  <Variable initializer="string:true" name="trace"/>
+  <Description>LDAP - Group Creation Form.</Description>
+  <Step icon="Start" name="Start" posX="28" posY="10">
+    <Transition to="UserForm"/>
+  </Step>
+  <Step icon="Message" name="UserForm" posX="115" posY="10">
+    <Approval name="LDAP-Form" owner="string:spadmin" return="identityName,approver1,approver2,LDAPGroupName,date">
+      <Form name="LDAP-Form">
+        <Attributes>
+          <Map>
+            <entry key="pageTitle" value="Create an LDAP Group"/>
+          </Map>
+        </Attributes>
+        <Button action="next" label="Submit"/>
+        <Button action="cancel" label="Cancel Request"/>
+        <Section label="Instructions" name="userInstructions" type="text">
+          <Field name="Directions" value="To create a new LDAP group fill in the necessary information below."/>
+        </Section>
+        <Section columns="2" label="Create LDAP Group">
+          <Field displayName="Requesting User" name="identityName" readOnly="true" type="string" value="script:context.getUserName();"/>
+          <Field displayName="LDAP Group Name" name="LDAPGroupName" required="true" type="string">
+            <ValidationRule>
+              <Reference class="sailpoint.object.Rule"  name="Validation-LDAPGroup"/>
+            </ValidationRule>
+          </Field>
+          <Field displayName="LDAP Group Approver (Primary)" name="approver1" required="true" type="identity">
+            <Attributes>
+              <Map>
+                <entry key="valueProperty" value="name"/>
+              </Map>
+            </Attributes>
+          </Field>
+          <Field displayName="LDAP Group Approver (Secondary)" name="approver2" required="true" type="identity">
+            <Attributes>
+              <Map>
+                <entry key="valueProperty" value="name"/>
+              </Map>
+            </Attributes>
+          </Field>
+          <Field displayName="Date Required?" name="date" required="true" type="date">
+            <Script>
+              <Source>
+                      return new Date();
+            </Source>
+            </Script>
+          </Field>
+        </Section>
+      </Form>
+    </Approval>
+    <Description>Present a form to the user and gather their input. Validate the entered LDAP group against our known LDAP entries internally.</Description>
+    <Transition to="Confirm"/>
+  </Step>
+  <Step icon="Message" name="Confirm" posX="212" posY="10">
+    <Approval name="LDAP-Form" owner="string:spadmin" send="identityName,approver1,approver2,LDAPGroupName,date">
+      <Form name="LDAP-Form">
+        <Attributes>
+          <Map>
+            <entry key="pageTitle" value="Confirm LDAP Group Settings"/>
+          </Map>
+        </Attributes>
+        <Button action="next" label="Approve"/>
+        <Button action="cancel" label="Cancel Request"/>
+        <Section columns="2" label="Confirm LDAP Group" type="datatable">
+          <Field displayName="Requesting User" name="identityName" readOnly="true" type="string" value="ref:identityName"/>
+          <Field displayName="LDAP Group Name" name="LDAPGroupName" readOnly="true" required="true" type="string" value="LDAPGroupName">
+            <ValidationRule>
+              <Reference class="sailpoint.object.Rule"  name="Validation-LDAPGroup"/>
+            </ValidationRule>
+          </Field>
+          <Field displayName="LDAP Group Approver (Primary)" name="approver1" readOnly="true" required="true" type="identity" value="ref:approver1">
+            <Attributes>
+              <Map>
+                <entry key="valueProperty" value="name"/>
+              </Map>
+            </Attributes>
+          </Field>
+          <Field displayName="LDAP Group Approver (Secondary)" name="approver2" readOnly="true" required="true" type="identity" value="ref:approver2">
+            <Attributes>
+              <Map>
+                <entry key="valueProperty" value="name"/>
+              </Map>
+            </Attributes>
+          </Field>
+          <Field displayName="Date Required?" name="date" readOnly="true" required="true" type="date" value="ref:date"/>
+        </Section>
+      </Form>
+    </Approval>
+    <Description>Present user with a confirmation form before creating the group.</Description>
+    <Transition to="Build Plan" when="script:approved"/>
+    <Transition to="Stop"/>
+  </Step>
+  <Step icon="Task" name="Build Plan" posX="276" posY="107" resultVariable="plan">
+    <Description>This step will construct a provisioning plan with the requested LDAP groups.</Description>
+    <Script>
+      <Source>
+
+
+//
+// Imports for Provisioning Plan, Object Request
+//
+
+import sailpoint.object.ProvisioningPlan;
+import sailpoint.object.ProvisioningPlan.ObjectRequest ;
+import sailpoint.object.ProvisioningPlan.AttributeRequest;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+//
+// Constants for this example
+// 
+
+String appName = "STS Windows Server 2012 95-22";
+String baseDN = ",ou=groups,dc=training,dc=sailpoint,dc=com";
+String attrName = "groups";
+boolean debug = true;
+Logger logger = Logger.getLogger("sts.wf.role_request");
+
+
+if (debug)
+{
+  logger.debug("Starting to create ObjectRequest Plan for " + appName + " for baseDN=" + baseDN); 
+}
+
+ProvisioningPlan plan = new ProvisioningPlan();
+
+if (debug)
+{
+  logger.debug("Starting to build plan..."); 
+}
+
+ObjectRequest objectRequest = new ObjectRequest(); 
+
+if (debug)
+{
+  logger.debug("Created Object Request..."); 
+}
+
+/*---  For LDAP
+objectRequest.setOp(ProvisioningPlan.ObjectOperation.Create); 
+objectRequest.setType("group"); 
+objectRequest.setApplication(appName); 
+objectRequest.add(new AttributeRequest("sysAttribute",attrName));
+objectRequest.add(new AttributeRequest("sysDisplayName",LDAPGroupName));
+objectRequest.add(new AttributeRequest("sysOwner","spadmin"));
+objectRequest.add(new AttributeRequest("sysAttribute",attrName));
+objectRequest.add(new AttributeRequest("sysRequestable",true));
+objectRequest.add(new AttributeRequest("sysManagedAttributeType","Entitlement"));
+objectRequest.add(new AttributeRequest("dn","cn=" + LDAPGroupName + baseDN));
+objectRequest.add(new AttributeRequest("description","Description for LDAP Group: " + LDAPGroupName));
+objectRequest.add(new AttributeRequest("cn",LDAPGroupName));
+---*/
+
+/*---  For Windows Server 2012 ---*/
+objectRequest.setOp(ProvisioningPlan.ObjectOperation.Create); 
+objectRequest.setType("group"); 
+logger.debug("setApplication = '" + appName + "'"); 
+objectRequest.setApplication(appName); 
+
+logger.debug("groupName = '" + LDAPGroupName + "'"); 
+objectRequest.add(new AttributeRequest("sAMAccountName", LDAPGroupName));
+
+//
+// ObjectRequest created, now add to the Plan
+// Add a requester also
+//
+
+plan.addObjectRequest(objectRequest);
+plan.addRequester(context.getObjectByName(Identity.class,context.getUserName())); 
+
+//
+// output the Provisioning Plan prior to passing off to be provisioned. 
+//
+
+if (debug) 
+{
+  logger.debug("Provisioning Plan = " + plan.toXml());
+}
+
+//
+// return the plan so it's available in the workflow for later. 
+//
+
+return plan;
+
+
+</Source>
+    </Script>
+    <Transition to="Provision Group"/>
+  </Step>
+  <Step icon="Task" name="Provision Group" posX="403" posY="107">
+    <Arg name="trace" value="ref:trace"/>
+    <Arg name="plan" value="ref:plan"/>
+    <Description>Call the "built-in" entitlement update workflow with our calculated plan in order to provision both the LDAP group AND the internal Entitlement Catalog entry.</Description>
+    <WorkflowRef>
+      <Reference class="sailpoint.object.Workflow"  name="Entitlement Update"/>
+    </WorkflowRef>
+    <Transition to="Stop"/>
+  </Step>
+  <Step icon="Stop" name="Stop" posX="481" posY="8"/>
+</Workflow>

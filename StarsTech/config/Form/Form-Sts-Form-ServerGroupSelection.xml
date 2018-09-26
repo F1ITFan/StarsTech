@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Form PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Form name="STS - Form - Server Group Selection" type="Workflow">
+  <Attributes>
+    <Map>
+      <entry key="pageTitle" value="STS - Form - Server Group Selection"/>
+    </Map>
+  </Attributes>
+  <Description/>
+  <Section label="Server Type" name="serverTypeSection">
+    <Field displayName="Application Group (for filtering)" dynamic="true" helpKey="Select the application group" name="applicationGroup" required="true" type="Application">
+      <AllowedValuesDefinition>
+        <Value>
+          <List>
+            <String>Linux 1</String>
+            <String>Linux 2</String>
+            <String>Windows Server OPS</String>
+            <String>Windows Server DBA</String>
+          </List>
+        </Value>
+      </AllowedValuesDefinition>
+    </Field>
+  </Section>
+  <Button action="next" label="Next"/>
+</Form>

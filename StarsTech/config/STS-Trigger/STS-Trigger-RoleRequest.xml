@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sailpoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<sailpoint>
+<!-- *******************************************************************************************
+	SCOPING
+ *******************************************************************************************-->
+	<SPRight displayName="STS Role Request Right" name="STS_Role_Request_SPRight" />
+	
+	<DynamicScope name="STS Role Request Scope">
+		<Selector>
+			<IdentitySelector>
+				<MatchExpression>
+					<MatchTerm name="rights" value="STS_Role_Request_SPRight"/>
+				</MatchExpression>
+			</IdentitySelector>
+		</Selector>
+	</DynamicScope>
+	
+<!-- *******************************************************************************************
+	Quick Link
+ *******************************************************************************************-->
+
+	<QuickLink action="workflow" category="%%STS_ROLE_REQUEST_LINK_CATEGORY%%" 
+		disabled="%%STS_ROLE_REQUEST_IS_DISABLED%%" 
+		icon="viewIdentity" messageKey="%%STS_ROLE_REQUEST_LINK_MESSAGE_KEY%%"
+		name="STS Role Request" ordering="%%STS_ROLE_REQUEST_LINK_ORDERING%%">
+		<Attributes>
+			<Map>
+				<entry key="forceAllowOthers" value="true" />
+				<entry key="hideAllowSelf" value="true" />
+				<entry key="workflowName" value="STS-Batch-Role-Provisioning"/>
+			</Map>
+		</Attributes>
+		<DynamicScopes>
+			<Reference class="sailpoint.object.DynamicScope" name="STS Role Request Scope" />
+		</DynamicScopes>
+	</QuickLink>
+
+<!-- *******************************************************************************************
+	TRIGGER OBJECT
+ *******************************************************************************************
+	 <IdentityTrigger handler="sailpoint.api.WorkflowTriggerHandler" 
+	 	name="STS Role Request Trigger" type="Rule"
+		disabled="%%STS_ROLE_REQUEST_IS_DISABLED%%">
+	  <Owner>
+	    <Reference class="sailpoint.object.Identity" name="spadmin"/>
+	  </Owner>
+	  <HandlerParameters>
+	    <Attributes>
+	      <Map>
+	        <entry key="workflow" value="STS-Batch-Role-Provisioning"/>
+	      </Map>
+	    </Attributes>
+	  </HandlerParameters>
+	  <TriggerRule>
+	    <Reference class="sailpoint.object.Rule" name="STS Batch Role Provisoning Trigger Rule"/>
+	  </TriggerRule>
+	</IdentityTrigger>
+ *******************************************************************************************-->
+	
+	
+ <!-- *******************************************************************************************
+	TRIGGER RULE
+   *******************************************************************************************
+ 	<Rule language="beanshell" name="STS Batch Role Provisioning Trigger Rule" type="IdentityTrigger">
+	  <Signature returnType="boolean">
+	    <Inputs>
+	      <Argument name="log">
+	        <Description>
+	          The log object associated with the SailPointContext.
+	        </Description>
+	      </Argument>
+	      <Argument name="context">
+	        <Description>
+	          A sailpoint.api.SailPointContext object that can be used to query the database if necessary.
+	        </Description>
+	      </Argument>
+	      <Argument name="previousIdentity">
+	        <Description>
+	          The identity before the refresh/aggregation (this will be null when an
+	          identity is created).
+	        </Description>
+	      </Argument>
+	      <Argument name="newIdentity">
+	        <Description>
+	          The identity after the refresh/aggregation (this will be null when an
+	          identity is deleted).
+	        </Description>
+	      </Argument>
+	    </Inputs>
+	    <Returns>
+	      <Argument name="result">
+	        <Description>
+	          A boolean describing the result of the rule.
+	        </Description>
+	      </Argument>
+	    </Returns>
+	  </Signature>
+	  <ReferencedRules>
+	  		<Reference class="sailpoint.object.Rule" name="SP Provisioning Rules Library"/>
+		    <Reference class="sailpoint.object.Rule" name="SP Joiner Rules Library"/>
+		    <Reference class="sailpoint.object.Rule" name="SPCONF Joiner Rules Library"/>
+	   </ReferencedRules>
+	  <Source>
+	  	return isTriggerJoinerRule(context, previousIdentity, newIdentity);
+	  </Source>
+	</Rule>
+	   *******************************************************************************************-->
+	
+</sailpoint>

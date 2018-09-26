@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Workflow PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Workflow explicitTransitions="true" name="STS-Batch-Role-Provisioning" type="BatchProvisioning">
+  <Variable name="emailArgList">
+    <Description>parameter for the &amp;#39;Notify&amp;#39; step which call the &amp;#39;SP Dynamic Send Emails Sub&amp;#39;.</Description>
+  </Variable>
+  <Variable input="true" name="identityName" required="true"/>
+  <Description>This workflow will batch provision a Role in multiple applications.</Description>
+  <Step icon="Start" name="Start" posX="20" posY="20">
+    <Transition to="Application Selection"/>
+  </Step>
+  <Step icon="Stop" name="Stop" posX="738" posY="25"/>
+  <Step icon="Default" name="Application Selection" posX="147" posY="19">
+    <Approval name="STS - Form - Server Selection" return="" send="">
+      <Form name="STS - Form - Server Selection">
+        <Attributes>
+          <Map>
+            <entry key="pageTitle" value="STS - Form - Server Selection"/>
+          </Map>
+        </Attributes>
+        <FormRef name="STS - Form - Server Selection"/>
+      </Form>
+    </Approval>
+    <Description>Select the source and target applications (Server group : Windows Server DBA, Windows Server OPS, Linux ONE, Linux TWO, etc)</Description>
+    <Transition to="Role Selection"/>
+  </Step>
+  <Step icon="Default" name="Role Selection" posX="303" posY="18">
+    <Approval name="STS - Form - Group Selection" return="" send="">
+      <Form name="STS - Form - Group Selection">
+        <Attributes>
+          <Map>
+            <entry key="pageTitle" value="STS - Form - Group Selection"/>
+          </Map>
+        </Attributes>
+        <FormRef name="STS - Form - Group Selection"/>
+      </Form>
+    </Approval>
+    <Description>Select the Role from the source application to replicate on the target application(s).</Description>
+    <Transition to="Approve and Provision"/>
+  </Step>
+  <Step icon="Default" name="Approve and Provision" posX="417" posY="21">
+    <Arg name="approvalScheme"/>
+    <Arg name="formTemplate"/>
+    <Arg name="enableRetryRequest"/>
+    <Arg name="securityOfficerElectronicSignature"/>
+    <Arg name="fallbackApprover"/>
+    <Arg name="endOnManualWorkItems"/>
+    <Arg name="userEmailTemplate"/>
+    <Arg name="workItemPriority"/>
+    <Arg name="project"/>
+    <Arg name="workItemComments"/>
+    <Arg name="identityRequestId"/>
+    <Arg name="approvalSplitPoint"/>
+    <Arg name="source"/>
+    <Arg name="managerElectronicSignature"/>
+    <Arg name="identityDisplayName"/>
+    <Arg name="foregroundProvisioning"/>
+    <Arg name="ownerElectronicSignature"/>
+    <Arg name="approvalMode"/>
+    <Arg name="batchRequestItemId"/>
+    <Arg name="trace"/>
+    <Arg name="endOnProvisioningForms"/>
+    <Arg name="approvalAssignmentRule"/>
+    <Arg name="plan"/>
+    <Arg name="flow"/>
+    <Arg name="identityName"/>
+    <Arg name="approvalSet"/>
+    <Arg name="manualActionsEmailTemplate"/>
+    <Arg name="policyViolations"/>
+    <Arg name="filterRejects"/>
+    <Arg name="ownerEmailTemplate"/>
+    <Arg name="splitProvisioning"/>
+    <Arg name="setPreviousApprovalDecisions"/>
+    <Arg name="clearApprovalDecisions"/>
+    <Arg name="requesterEmailTemplate"/>
+    <Arg name="approvalEmailTemplate"/>
+    <Arg name="ticketManagementApplication"/>
+    <Arg name="optimisticProvisioning"/>
+    <Arg name="securityOfficerEmailTemplate"/>
+    <Arg name="securityOfficerName"/>
+    <Arg name="approvingIdentities"/>
+    <Arg name="managerEmailTemplate"/>
+    <Description>Approve and Provision</Description>
+    <WorkflowRef>
+      <Reference class="sailpoint.object.Workflow" name="Approve and Provision Subprocess"/>
+    </WorkflowRef>
+    <Transition to="Notify"/>
+  </Step>
+  <Step icon="Default" name="Notify" posX="568" posY="18">
+    <Arg name="identityDisplayName"/>
+    <Arg name="emailTemplateExists"/>
+    <Arg name="trace"/>
+    <Arg name="identityName" value="ref:identityName"/>
+    <Arg name="emailArgs"/>
+    <Arg name="emailIterator"/>
+    <Arg name="emailArgList" value="ref:emailArgList"/>
+    <Description>Email notify the requestee.</Description>
+    <WorkflowRef>
+      <Reference class="sailpoint.object.Workflow" name="SP Dynamic Send Emails Sub"/>
+    </WorkflowRef>
+    <Transition to="Stop"/>
+  </Step>
+</Workflow>

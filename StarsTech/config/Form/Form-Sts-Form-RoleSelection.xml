@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Form PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Form name="STS - Form - Role Selection" type="Workflow">
+  <Attributes>
+    <Map>
+      <entry key="pageTitle" value="STS - Form - Role Selection"/>
+    </Map>
+  </Attributes>
+  <Description/>
+  <Section label="Role Selection" name="roleSelection">
+    <Attributes>
+      <Map>
+        <entry key="subtitle" value="Role Selection"/>
+      </Map>
+    </Attributes>
+    <Field displayName="Available Roles" helpKey="Choose the roles to provision" multi="true" name="roleComboBox" required="true" type="string"/>
+  </Section>
+  <Button action="next" label="Provision"/>
+</Form>
