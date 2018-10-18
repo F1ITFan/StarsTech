@@ -23,7 +23,7 @@
 	<QuickLink action="workflow" category="%%STS_ROLE_REQUEST_LINK_CATEGORY%%" 
 		disabled="%%STS_ROLE_REQUEST_IS_DISABLED%%" 
 		icon="viewIdentity" messageKey="%%STS_ROLE_REQUEST_LINK_MESSAGE_KEY%%"
-		name="STS Role Request" ordering="%%STS_ROLE_REQUEST_LINK_ORDERING%%">
+		name="STS Group Creation" ordering="%%STS_ROLE_REQUEST_LINK_ORDERING%%">
 		<Attributes>
 			<Map>
 				<entry key="forceAllowOthers" value="true" />

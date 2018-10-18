@@ -199,6 +199,6 @@
 	<classpathentry kind="lib" path="/Users/antonio.cano/Software/ServletContainers/apache-tomcat-8.5.11/srvr1/webapps/iiq73/WEB-INF/lib/xsom-20081112.jar"/>
 	<classpathentry kind="lib" path="/Users/antonio.cano/Software/ServletContainers/apache-tomcat-8.5.11/srvr1/webapps/iiq73/WEB-INF/lib/yuicompressor-2.4.2.jar"/>
 	<classpathentry kind="lib" path="/Users/antonio.cano/Software/ServletContainers/apache-tomcat-8.5.11/srvr1/webapps/iiq73/WEB-INF/classes"/>
-	<classpathentry kind="lib" path="/Users/antonio.cano/SailPoint/Projects/StarsTechnologies/Workspace/StarsTech/externaltools/SST_JUnitIdentityIQHelper/jar/IdentityIQJUnitHelper.jar"/>
+	<classpathentry kind="lib" path="/Users/antonio.cano/SailPoint/Projects/StarsTechnologies/git/StarsTech/externaltools/SST_JUnitIdentityIQHelper/jar/IdentityIQJUnitHelper.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Application PUBLIC "sailpoint.dtd" "sailpoint.dtd">
 <Application connector="sailpoint.connector.NTConnector" featuresString="PROVISIONING, SYNC_PROVISIONING, UNSTRUCTURED_TARGETS, UNLOCK, ENABLE, PASSWORD, CURRENT_PASSWORD" icon="directory1Icon" name="STS Windows Server 2012 95-21" profileClass="" type="Windows Local - Direct">
+  <AccountCorrelationConfig>
+    <Reference class="sailpoint.object.CorrelationConfig" name="STS Windows Server Correlation Config"/>
+  </AccountCorrelationConfig>
   <Attributes>
     <Map>
       <entry key="IQServiceHost" value="10.30.95.20"/>
@@ -16,7 +19,7 @@
       </entry>
       <entry key="disableQualifyingLocalObjects">
         <value>
-          <Boolean/>
+          <Boolean>true</Boolean>
         </value>
       </entry>
       <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
@@ -28,7 +31,7 @@
       </entry>
       <entry key="nativeChangeDetectionOperations"/>
       <entry key="pageSize" value="1000"/>
-      <entry key="password" value="1:15vUYZ00WzjSEbMn2/CBzA=="/>
+      <entry key="password" value="1:ACP:Yi5HShnEiOpG+phy+miSCH61A3XDvcOx1RDvWGvwmSU="/>
       <entry key="retryableErrors">
         <value>
           <List>

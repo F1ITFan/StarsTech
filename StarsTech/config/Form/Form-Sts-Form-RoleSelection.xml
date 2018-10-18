@@ -16,4 +16,5 @@
     <Field displayName="Available Roles" helpKey="Choose the roles to provision" multi="true" name="roleComboBox" required="true" type="string"/>
   </Section>
   <Button action="next" label="Provision"/>
+  <Button action="cancel" label="Cancel"/>
 </Form>

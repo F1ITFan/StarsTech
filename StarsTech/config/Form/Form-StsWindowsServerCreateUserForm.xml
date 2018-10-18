@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Form PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Form name="STS Windows Server Create User Form" type="Application">
+  <Attributes>
+    <Map>
+      <entry key="pageTitle" value="Create User"/>
+    </Map>
+  </Attributes>
+  <Section>
+    <Field displayName="con_prov_policy_wl_sAMAccountName" helpKey="help_con_prov_policy_wl_sAMAccountName" name="sAMAccountName" required="true" reviewRequired="true" type="string"/>
+    <Field displayName="con_prov_policy_wl_Password" helpKey="help_con_prov_policy_wl_Password" name="password" required="true" reviewRequired="true" type="secret"/>
+    <Field displayName="con_prov_policy_wl_Description" helpKey="help_con_prov_policy_wl_Description" name="Description" reviewRequired="true" type="string"/>
+    <Field displayName="con_prov_policy_wl_FullName" helpKey="help_con_prov_policy_wl_FullName" name="FullName" reviewRequired="true" type="string"/>
+    <Field displayName="con_prov_policy_wl_Disable" helpKey="help_con_prov_policy_wl_Disable" name="IIQDisabled" reviewRequired="true" type="string" value="false">
+      <AllowedValuesDefinition>
+        <Value>
+          <List>
+            <String>true</String>
+            <String>false</String>
+          </List>
+        </Value>
+      </AllowedValuesDefinition>
+    </Field>
+    <Field displayName="con_prov_policy_wl_PasswordExpired" helpKey="help_con_prov_policy_wl_PasswordExpired" name="PasswordExpired" reviewRequired="true" type="string" value="true">
+      <AllowedValuesDefinition>
+        <Value>
+          <List>
+            <String>true</String>
+            <String>false</String>
+          </List>
+        </Value>
+      </AllowedValuesDefinition>
+    </Field>
+    <Field displayName="con_prov_policy_wl_PasswordUnchangeable" helpKey="help_con_prov_policy_wl_PasswordUnchangeable" name="PasswordUnchangeable" reviewRequired="true" type="string" value="false">
+      <AllowedValuesDefinition>
+        <Value>
+          <List>
+            <String>true</String>
+            <String>false</String>
+          </List>
+        </Value>
+      </AllowedValuesDefinition>
+    </Field>
+    <Field displayName="con_prov_policy_wl_PasswordNeverExpires" helpKey="help_con_prov_policy_wl_PasswordNeverExpires" name="PasswordNeverExpires" reviewRequired="true" type="string" value="false">
+      <AllowedValuesDefinition>
+        <Value>
+          <List>
+            <String>true</String>
+            <String>false</String>
+          </List>
+        </Value>
+      </AllowedValuesDefinition>
+    </Field>
+  </Section>
+</Form>

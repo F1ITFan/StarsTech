@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Form PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Form name="STS Linux Server Create User Form" type="Application">
+  <Attributes>
+    <Map>
+      <entry key="pageTitle" value="account"/>
+    </Map>
+  </Attributes>
+  <Section>
+    <Field displayName="con_form_linux_direct_username" helpKey="help_con_linux_direct_username" name="username" required="true" type="string"/>
+    <Field displayName="con_form_linux_direct_homedir" helpKey="help_con_linux_direct_homedir" name="home" reviewRequired="true" type="string"/>
+    <Field displayName="con_form_linux_direct_shell" helpKey="help_con_linux_direct_shell" name="shell" reviewRequired="true" type="string"/>
+    <Field displayName="con_form_linux_direct_userid" helpKey="help_con_linux_direct_userid" name="uid" reviewRequired="true" type="string"/>
+    <Field displayName="con_form_linux_direct_password" helpKey="help_con_linux_direct_password" name="password" reviewRequired="true" type="secret"/>
+    <Field displayName="con_form_linux_direct_mindays" helpKey="help_con_linux_direct_mindays" name="pwdmin" reviewRequired="true" type="string"/>
+    <Field displayName="con_form_linux_direct_maxdays" helpKey="help_con_linux_direct_maxdays" name="pwdmax" reviewRequired="true" type="string"/>
+    <Field displayName="con_form_linux_direct_warntime" helpKey="help_con_linux_direct_warntime" name="pwdwarn" reviewRequired="true" type="string"/>
+    <Field displayName="con_form_linux_direct_grpname" helpKey="help_con_linux_direct_grpname" name="primgrp" reviewRequired="true" type="string"/>
+    <Field displayName="con_form_linux_direct_comment" helpKey="help_con_linux_direct_comment" name="comment" reviewRequired="true" type="string"/>
+    <Field displayName="con_form_linux_direct_accdur" helpKey="help_con_linux_direct_accdur" name="expiration" reviewRequired="true" type="string"/>
+    <Field displayName="con_form_linux_direct_acctime" helpKey="help_con_linux_direct_acctime" name="inactive" reviewRequired="true" type="string"/>
+    <Field displayName="con_form_linux_direct_home" helpKey="help_con_linux_direct_home" name="crthomedir" reviewRequired="true" type="boolean"/>
+    <Field displayName="con_form_linux_direct_login" helpKey="help_con_linux_direct_login" name="lastlog" reviewRequired="true" type="boolean"/>
+    <Field displayName="con_form_linux_direct_dupid" helpKey="help_con_linux_direct_dupid" name="dupuid" reviewRequired="true" type="boolean"/>
+    <Field displayName="con_form_linux_direct_pswdlogin" helpKey="help_con_linux_direct_pswdlogin" name="forcepwdchg" reviewRequired="true" type="boolean" value="false"/>
+  </Section>
+</Form>

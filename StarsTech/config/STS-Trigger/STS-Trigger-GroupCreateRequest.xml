@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sailpoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+
+<sailpoint>
+<SPRight displayName="STS Group Create Request Right" name="STS_Group_Create_Request_SPRight" />
+
+<DynamicScope name="STS Group Create Request Scope">
+	<Selector>
+		<IdentitySelector>
+			<MatchExpression>
+				<MatchTerm name="rights" value="STS_Group_Create_Request_SPRight"/>
+			</MatchExpression>
+		</IdentitySelector>
+	</Selector>
+</DynamicScope>
+
+<QuickLink action="workflow" category="%%STS_GROUP_CREATE_REQUEST_LINK_CATEGORY%%" 
+	disabled="%%STS_GROUP_CREATE_REQUEST_IS_DISABLED%%" 
+	icon="viewIdentity" messageKey="%%STS_GROUP_CREATE_REQUEST_LINK_MESSAGE_KEY%%"
+	name="STS Group Creation" ordering="%%STS_GROUP_CREATE_REQUEST_LINK_ORDERING%%">
+	<Attributes>
+		<Map>
+		<!-- 
+			<entry key="forceAllowOthers" value="true" />
+			<entry key="hideAllowSelf" value="true" />  -->
+			<entry key="workflowName" value="STS-QuickLink-GroupCreateRequest"/> 
+	<!--		<entry key="workflowName" value="STS-QuickLink-BatchAccountRequest"/>  -->
+		</Map>
+	</Attributes>
+	<DynamicScopes>
+		<Reference class="sailpoint.object.DynamicScope" name="STS Group Create Request Scope" />
+	</DynamicScopes>
+</QuickLink>
+
+</sailpoint>	

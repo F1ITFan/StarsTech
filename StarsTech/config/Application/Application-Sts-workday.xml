@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Application PUBLIC "sailpoint.dtd" "sailpoint.dtd">
 <Application authoritative="true" connector="sailpoint.connector.DelimitedFileConnector" featuresString="DIRECT_PERMISSIONS, NO_RANDOM_ACCESS, DISCOVER_SCHEMA" icon="enterpriseIcon" name="STS-Workday" profileClass="" type="DelimitedFile">
+  <AccountCorrelationConfig>
+    <Reference class="sailpoint.object.CorrelationConfig" name="STS-Correlation"/>
+  </AccountCorrelationConfig>
   <Attributes>
     <Map>
       <entry key="acctAggregationEnd">
         <value>
-          <Date>1537565857885</Date>
+          <Date>1538506020193</Date>
         </value>
       </entry>
       <entry key="acctAggregationStart">
         <value>
-          <Date>1537565857665</Date>
+          <Date>1538506019865</Date>
         </value>
       </entry>
       <entry key="afterProvisioningRule"/>
-      <entry key="applicationGroup" value="Windows Server DBA"/>
+      <entry key="applicationGroup" value="IIQ"/>
       <entry key="beforeProvisioningRule"/>
       <entry key="compositeDefinition"/>
       <entry key="delimiter" value=","/>
-      <entry key="file" value="/Users/antonio.cano/SailPoint/Projects/StarsTechnologies/Stars_Docs/workday2.csv"/>
+<!--        <entry key="file" value="/Users/antonio.cano/SailPoint/Projects/StarsTechnologies/Stars_Docs/workdayNEW.csv"/> -->
+      <entry key="file" value="%%STS_WORKDAY_APPLICATION_CSV_FILE%%"/>
       <entry key="filetransport" value="local"/>
       <entry key="filterEmptyRecords">
         <value>
@@ -45,6 +49,11 @@
       <entry key="isSortedByIndexColumn">
         <value>
           <Boolean/>
+        </value>
+      </entry>
+      <entry key="managerCorrelationFilter">
+        <value>
+          <Filter operation="EQ" property="name" value="Manager UserID"/>
         </value>
       </entry>
       <entry key="mergeRows">
@@ -81,8 +90,8 @@
     <Reference class="sailpoint.object.Identity" name="Antonio.Cano"/>
   </Owner>
   <Schemas>
-    <Schema displayAttribute="Full Name" identityAttribute="UserID" instanceAttribute="UserID" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
-      <AttributeDefinition name="Employee ID" type="string">
+    <Schema displayAttribute="UserID" identityAttribute="UserID" instanceAttribute="UserID" nativeObjectType="account" objectType="account" permissionsRemediationModificationType="None">
+      <AttributeDefinition name="﻿Employee ID" type="string">
         <Description/>
       </AttributeDefinition>
       <AttributeDefinition name="Manager ID" type="string">
@@ -95,9 +104,6 @@
         <Description/>
       </AttributeDefinition>
       <AttributeDefinition name="Last Name" type="string">
-        <Description/>
-      </AttributeDefinition>
-      <AttributeDefinition name="Email" type="string">
         <Description/>
       </AttributeDefinition>
       <AttributeDefinition name="Full Name" type="string">
@@ -116,6 +122,9 @@
         <Description/>
       </AttributeDefinition>
       <AttributeDefinition name="Manager UserID" type="string">
+        <Description/>
+      </AttributeDefinition>
+      <AttributeDefinition name="Email" type="string">
         <Description/>
       </AttributeDefinition>
     </Schema>

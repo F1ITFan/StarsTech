@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Application PUBLIC "sailpoint.dtd" "sailpoint.dtd">
-<Application connector="sailpoint.connector.OpenConnectorAdapter" featuresString="PROVISIONING, SYNC_PROVISIONING, ENABLE, UNLOCK, SEARCH, UNSTRUCTURED_TARGETS, PASSWORD, CURRENT_PASSWORD" icon="enterpriseIcon" name="STS Linux 9512" profileClass="" type="Linux - Direct">
+<Application connector="sailpoint.connector.OpenConnectorAdapter" featuresString="PROVISIONING, SYNC_PROVISIONING, ENABLE, UNLOCK, SEARCH, UNSTRUCTURED_TARGETS, PASSWORD, CURRENT_PASSWORD" icon="enterpriseIcon" name="STS Linux 9512" profileClass="Linux 2" type="Linux - Direct">
   <Attributes>
     <Map>
       <entry key="ConnectorCode" value="LINUX"/>
@@ -20,7 +20,7 @@
         </value>
       </entry>
       <entry key="NoOutput" value="none"/>
-      <entry key="PassphraseForPrivateKey" value="1:BA7QR5zdX15IdpDAUew1Hg=="/>
+      <entry key="PassphraseForPrivateKey" value="1:ACP:lytFfdYBrj2CIFGKUJ2x9oaQemGhDWb5iHNQraZuJs0="/>
       <entry key="PasswdBasicErrors">
         <value>
           <Map>
@@ -135,13 +135,13 @@
       <entry key="SudoError" value="Sorry, try again."/>
       <entry key="SudoErrorCode" value="1"/>
       <entry key="SudoUser" value="root"/>
-      <entry key="SudoUserPassword" value="1:15vUYZ00WzjSEbMn2/CBzA=="/>
+      <entry key="SudoUserPassword" value="1:ACP:BcRbx8NeUqHbCSpG2KtzzyQ+Z5R7ufn+n9upo3OCnWk="/>
       <entry key="afterProvisioningRule"/>
       <entry key="aggregation.account" value="cat /etc/passwd | grep -v '^+' | grep -v '^-'"/>
       <entry key="aggregation.group" value="cat /etc/group | grep -v '^+' | grep -v '^-'"/>
       <entry key="aggregation.lockstatus" value="faillog | awk '{print $1} {print $2}'"/>
       <entry key="aggregation.passwd" value="cat /etc/shadow | grep -v '^+' | grep -v '^-'"/>
-      <entry key="applicationGroup" value="Linux TWO"/>
+      <entry key="applicationGroup" value="Linux 2"/>
       <entry key="beforeProvisioningRule"/>
       <entry key="change.password" value="passwd"/>
       <entry key="change.password.noninteractive" value="printf &quot;%s\n&quot;"/>
@@ -510,6 +510,17 @@
         <Field displayName="con_form_linux_direct_gid" helpKey="help_con_linux_direct_gid" name="groupid" reviewRequired="true" type="string"/>
         <Field displayName="con_form_linux_direct_dupgrp" helpKey="help_con_linux_direct_dupgrp" name="dupgid" reviewRequired="true" type="boolean"/>
       </Section>
+    </Form>
+    <Form name="STS-Common-LInux" objectType="account" type="Update">
+      <Attributes>
+        <Map>
+          <entry key="pageTitle" value="STS-Common-LInux"/>
+          <entry key="subtitle" value="Linux Applications"/>
+          <entry key="title" value="STS Common Provisiong Policy Form"/>
+        </Map>
+      </Attributes>
+      <Description>Provisioning Policy Forn for Linux  apps.</Description>
+      <FormRef name="STS-Common-LInux"/>
     </Form>
   </ProvisioningForms>
   <Schemas>

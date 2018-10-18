@@ -121,7 +121,7 @@
           <List>
             <ColumnConfig dataIndex="name" groupProperty="name" headerKey="name" hideable="true" property="name" sortProperty="name" sortable="true" stateId="name"/>
             <ColumnConfig dataIndex="host" headerKey="host" hideable="true" stateId="host"/>
-  <!-- AGCD -->          <ColumnConfig dataIndex="applicationGroup" headerKey="applicationGroup" hideable="true" property="applicationGroup" sortProperty="applicationGroup" sortable="true" stateId="applicationGroup"/>
+            <ColumnConfig dataIndex="applicationGroup" groupProperty="applicationGroup" headerKey="applicationGroup" hideable="true" property="applicationGroup" sortProperty="applicationGroup" sortable="true" stateId="applicationGroup"/>
             <ColumnConfig dataIndex="type" groupProperty="type" headerKey="type" hideable="true" property="type" sortProperty="type" sortable="true" stateId="type"/>
             <ColumnConfig dataIndex="aggregationTypes" groupProperty="aggregationTypes" headerKey="aggregationTypes" property="aggregationTypes" sortProperty="aggregationTypes" stateId="aggregationTypes"/>
             <ColumnConfig dataIndex="modified" groupProperty="modified" headerKey="modified" hideable="true" property="modified" renderer="SailPoint.Date.DateTimeRenderer" sortProperty="modified" sortable="true" stateId="modified"/>
@@ -1306,7 +1306,7 @@
           </List>
         </value>
       </entry>
-      <entry key="identityViewAttributes" value="name,firstname,lastname,email,manager,type,softwareVersion,administrator"/>
+      <entry key="identityViewAttributes" value="name,firstname,lastname,position,email,manager,type,employeeID,softwareVersion,administrator,roleSet"/>
       <entry key="lcmCreateIdentityProvisioningPolicyRequiredFields">
         <value>
           <List>

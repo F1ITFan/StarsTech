@@ -16,7 +16,7 @@
       </entry>
       <entry key="disableQualifyingLocalObjects">
         <value>
-          <Boolean/>
+          <Boolean>true</Boolean>
         </value>
       </entry>
       <entry key="nativeChangeDetectionAttributeScope" value="entitlements"/>
@@ -28,7 +28,7 @@
       </entry>
       <entry key="nativeChangeDetectionOperations"/>
       <entry key="pageSize" value="1000"/>
-      <entry key="password" value="1:15vUYZ00WzjSEbMn2/CBzA=="/>
+      <entry key="password" value="1:ACP:FqrrFabe4IK3FJ2/bk139kHWiF6u62VlJYzfc91ITsc="/>
       <entry key="retryableErrors">
         <value>
           <List>

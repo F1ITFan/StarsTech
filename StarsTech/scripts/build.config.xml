@@ -304,17 +304,17 @@
     <!-- Target: validate                                           -->
     <!-- Validate custom XML files                                  -->
     <!-- ********************************************************** -->
+
     <target name="validate" depends="-strip-ids">
         <echo message="Validating Custom XML objects"/>
       <echo message="${build.customXMLDir}"/>
         <xmlvalidate>
-         <!--
-          <fileset dir="${build.customXMLDir}" includes="**/*.xml" />
-         -->
-            <fileset dir="${build.customXMLDir}">
+            <!--
+             <fileset dir="${build.customXMLDir}" includes="**/*.xml" />
+            -->
+        	<fileset dir="${build.customXMLDir}">
                <include name="**/*.xml"/>
-               
-               <!-- A.DUNFEE = - CUSTOM EXCLUDE FOR UNIT TEST OBJECTS -->
+        	    <!-- A.DUNFEE = - CUSTOM EXCLUDE FOR UNIT TEST OBJECTS -->
                <exclude name="**/Args/**"/>
                <exclude name="**/*Args*"/>
                
