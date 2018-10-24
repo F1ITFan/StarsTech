@@ -31,7 +31,8 @@
         <exclude name="**/.hg/**"/>
         <exclude name="**/*.lib/**"/>
         <exclude name="**/*~/**"/>
-    </patternset>
+        
+        </patternset>
     <patternset id="library.patterns">
         <include name="*.zip"/>
         <include name="*.war"/>

@@ -10,12 +10,21 @@
            This is the reverse of the way the services build used to build 
            the class path. -20131001, AHampton. -->
         <pathelement path="${build.iiqBinaryExtract}/WEB-INF/classes"/>
-        <fileset dir="${build.iiqBinaryExtract}/WEB-INF/lib">
+
+
+    	<fileset dir="${build.iiqBinaryExtract}/WEB-INF/lib">
             <include name="**/*.jar"/>
         </fileset>
         <fileset dir="./lib">
             <include name="**/*.jar"/>
         </fileset>              
+    	<!-- AGCD BEGIN -->
+        <pathelement path="/Users/antonio.cano/Software/ServletContainers/apache-tomcat-8.5.11/srvr1/webapps/iiq73/WEB-INF/lib"/>
+        <!--	
+            <include name="**/IdentityIQJUnitHelper.jar"/>
+        </fileset>
+        -->              
+    	<!-- AGCD END -->
     </path>
 
     <target name="compile">
@@ -62,8 +71,9 @@
             </then>
         </if>
 
-        <javac srcdir="src" source="1.7" target="1.7" destdir="${build.iiqBinaryExtract}/WEB-INF/classes" debug="true" classpathref="build.compile.classpath" includeantruntime="last">
-            <!-- uncomment these to explore the occasional warning, but there's
+     <!--    <javac srcdir="src" source="1.7" target="1.7" destdir="${build.iiqBinaryExtract}/WEB-INF/classes" debug="true" classpathref="build.compile.classpath" includeantruntime="last">  -->
+         <javac srcdir="src" source="1.8" target="1.8" destdir="${build.iiqBinaryExtract}/WEB-INF/classes" debug="true" classpathref="build.compile.classpath" includeantruntime="last">
+         	<!-- uncomment these to explore the occasional warning, but there's
                  a lot of harmless stuff in here now, so don't leave them on
                  all the time
             <compilerarg value="-Xlint:deprecation"/>
@@ -106,6 +116,7 @@
                     <classpath>
                         <pathelement path="${build.iiqBinaryExtract}/WEB-INF/classes"/>
                         <pathelement location="${build.iiqBinaryExtract}/WEB-INF/lib/identityiq.jar"/>
+                        <pathelement location="${build.iiqBinaryExtract}/lib/IdentityIQJunitHelper.jar"/>
                     </classpath>
                 </java>
             </then>

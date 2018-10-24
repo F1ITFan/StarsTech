@@ -45,4 +45,16 @@
     </AllowedValues>
     <Description>The approval level for the role.</Description>
   </ObjectAttribute>
+  <ObjectAttribute displayName="Role Set" editMode="Permanent" extendedNumber="1" name="roleSet">
+    <AllowedValues>
+      <String>set-1</String>
+      <String>set-2</String>
+      <String>set-3</String>
+      <String>set-4</String>
+      <String>set-5</String>
+    </AllowedValues>
+    <Description>The group/set to which this role belongs...
+Used for 'Access Request' purposes :
+Only those roles linked to a manager's 'roleSet' attribute will be shown for selection...</Description>
+  </ObjectAttribute>
 </ObjectConfig>
